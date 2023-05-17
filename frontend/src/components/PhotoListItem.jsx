@@ -3,14 +3,11 @@ import React from 'react';
 
 import '../styles/PhotoListItem.scss';
 
-const PhotoListItem = ({username, imageSource, id, hideUserName}) => {
+const PhotoListItem = (props) => {
   return (
-    <>
-      {username}
-      {imageSource}
-      {id}
-      {hideUserName}
-    </>
+   <span className="photo-list--item">
+    <img src={props.imageSource}/>
+   </span>
   )
 }
 
