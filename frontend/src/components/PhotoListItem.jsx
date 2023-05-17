@@ -3,8 +3,15 @@ import React from 'react';
 
 import '../styles/PhotoListItem.scss';
 
-const PhotoListItem = () => {
-  /* Insert React */
+const PhotoListItem = ({username, imageSource, id, hideUserName}) => {
+  return (
+    <>
+      {username}
+      {imageSource}
+      {id}
+      {hideUserName}
+    </>
+  )
 }
 
 PhotoListItem.defaultProps = {

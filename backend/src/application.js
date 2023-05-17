@@ -11,6 +11,7 @@ const app = express();
 const photos = require("./routes/photos");
 const topics = require("./routes/topics");
 
+
 function read(file) {
   return new Promise((resolve, reject) => {
     fs.readFile(
