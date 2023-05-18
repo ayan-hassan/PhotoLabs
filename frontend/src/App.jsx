@@ -2,6 +2,7 @@ import React from 'react';
 
 import PhotoListItem from './components/PhotoListItem';
 import './App.scss';
+import '../src/styles/PhotoList.scss'
 
 // Note: Rendering a single component to build components in isolation
 
@@ -16,9 +17,9 @@ const displayPhotos = (photo) => {
 
 const App = () => (
   <div className="App">
-    <span className='photo-list'>
+    <main className='photo-list'>
       {displayPhotos(<PhotoListItem/>)}
-    </span>
+    </main>
     
   </div>
 )
