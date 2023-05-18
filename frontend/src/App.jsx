@@ -2,6 +2,7 @@ import React from 'react';
 
 // import PhotoListItem from './components/PhotoListItem';
 // import TopicListItem from './components/TopicListItem';
+import TopNavigation from './components/TopNavigationBar';
 import TopicList from './components/TopicList'
 import PhotoList from './components/PhotoList';
 import './App.scss';
@@ -20,7 +21,8 @@ import '../src/styles/PhotoList.scss'
 
 const App = () => (
   <div className="App">
-    <TopicList/>
+    <TopNavigation/>
+    {/* <TopicList/> */}
     <PhotoList/>
     {/* <main className='photo-list'> */}
       {/* {displayPhotos(<PhotoListItem/>)} */}

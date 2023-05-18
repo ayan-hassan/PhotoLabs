@@ -12,8 +12,10 @@ const PhotoList = (props) => {
     photoComponent.push(<PhotoListItem/>)
   }
 
-  // const photoComponent = photosArray.map(photo => {
-  //   return <PhotoListItem/>
+  // const photoComponent = props.photos.map((photo) => {
+  //   <PhotoListItem
+  //   key={photo.id}
+  //   imageSource={imageSource}/>
   // })
 
   return (

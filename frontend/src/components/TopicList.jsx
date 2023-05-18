@@ -9,7 +9,8 @@ const TopicList = (props) => {
   
   const topicComponent = [];
   for (let topics of topicsArray) {
-    topicComponent.push(<TopicListItem/>)
+    topicComponent.push(
+    <TopicListItem/>)
   }
 
   return (
