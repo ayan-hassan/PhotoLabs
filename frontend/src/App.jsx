@@ -20,16 +20,19 @@ import '../src/styles/PhotoList.scss'
 //   return photos;
 // }
 
-const App = () => (
-  <div className="App">
-    <HomeRoute/>
-    {/* <TopNavigation/>
-    <PhotoList/> */}
-    {/* <main className='photo-list'> */}
-      {/* {displayPhotos(<PhotoListItem/>)} */}
-    {/* </main> */}
-    
-  </div>
-)
+const App = () => {
+  return (
+    <div className="App">
+      <HomeRoute/>
+      {/* <TopNavigation/>
+      <PhotoList/> */}
+      {/* <main className='photo-list'> */}
+        {/* {displayPhotos(<PhotoListItem/>)} */}
+      {/* </main> */}
+    </div>
+  )
+}
+  
+  
 
 export default App
