@@ -1,38 +1,17 @@
 import React from 'react';
-
-// import PhotoListItem from './components/PhotoListItem';
-// import TopicListItem from './components/TopicListItem';
 import HomeRoute from './components/HomeRoute';
-import TopNavigation from './components/TopNavigationBar';
-import TopicList from './components/TopicList'
-import PhotoList from './components/PhotoList';
+
 import './App.scss';
-import '../src/styles/PhotoList.scss'
+
+import mockPhotos from './mocks/photos.json'
 
 // Note: Rendering a single component to build components in isolation
 
 
-// const displayPhotos = (photo) => {
-//   const photos = []
-//   for (let i = 0; i < 3; i++) {
-//     photos.push(photo)
-//   }
-//   return photos;
-// }
-
-const App = () => {
-  return (
-    <div className="App">
-      <HomeRoute/>
-      {/* <TopNavigation/>
-      <PhotoList/> */}
-      {/* <main className='photo-list'> */}
-        {/* {displayPhotos(<PhotoListItem/>)} */}
-      {/* </main> */}
-    </div>
-  )
-}
-  
-  
+const App = () => (
+  <div className="App">
+    <HomeRoute mockPhotos={mockPhotos}/>
+  </div>
+)
 
 export default App

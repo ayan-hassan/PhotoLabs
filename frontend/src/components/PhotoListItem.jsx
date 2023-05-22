@@ -4,11 +4,16 @@ import '../styles/PhotoListItem.scss';
 import PhotoFavButton from './PhotoFavButton';
 
 const PhotoListItem = (props) => {
+  const [fav, setFav] = useState(false);
+
+  const handleClick = () => {
+    console.log("clicked");
+  }
 
   return (
     <article className='photo-list--item'>
-      <PhotoFavButton/>
-      <img className="photo-list--image" src={props.urls.regular}/>
+      <PhotoFavButton onClick={handleClick}/>
+      <img className="photo-list--image" src={props.imageSource}/>
     </article>
   )
 }
