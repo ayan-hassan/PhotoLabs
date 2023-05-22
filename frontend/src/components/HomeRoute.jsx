@@ -7,11 +7,12 @@ import PhotoList from "./PhotoList";
 
 export default function HomeRoute(props) {
 
-  const {mockPhotos} = props;
+  const {mockPhotos, mockTopics} = props;
+  
 
   return (
     <div className="home-route">
-      <TopNavigation/>
+      <TopNavigation mockTopics={mockTopics}/>
       <PhotoList mockPhotos={mockPhotos}/>
     </div>
   )

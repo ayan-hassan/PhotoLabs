@@ -1,17 +1,18 @@
 import React from 'react';
 
 import '../styles/TopicList.scss'
+import FavBadge from './FavBadge';
 import TopicListItem from './TopicListItem';
 
 const TopicList = (props) => {
-  const topicsArray = props.topics;
-  console.log(topicsArray);
+  const {mockTopics} = props;
   
-  const topicComponent = [];
-  for (let topics of topicsArray) {
-    topicComponent.push(
-    <TopicListItem/>)
-  }
+  const topicComponent = mockTopics.map(topic => 
+    <TopicListItem 
+      label={topic.title} 
+      link={topic.link} 
+      key={topic.id}/>
+      );
 
   return (
   <div className="top-nav-bar--topic-list">
@@ -20,23 +21,4 @@ const TopicList = (props) => {
   )
 }
 
-TopicList.defaultProps = {
-  topics: [
-    {
-      id: 1,
-      label: 'Nature',
-      link: 'link placeholder' 
-    },
-    { 
-      id: 2, 
-      label: 'Food',
-      link: 'link placeholder' 
-    },
-    {
-      id: 3,
-      label: 'People',
-      link: 'link placeholder' 
-    },
-  ]
-}
 export default TopicList
