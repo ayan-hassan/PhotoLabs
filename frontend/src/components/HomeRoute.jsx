@@ -8,7 +8,6 @@ import PhotoList from "./PhotoList";
 export default function HomeRoute(props) {
 
   const {mockPhotos, mockTopics} = props;
-  
 
   return (
     <div className="home-route">
@@ -17,3 +16,5 @@ export default function HomeRoute(props) {
     </div>
   )
 }
+
+//when I click the button, save the event to a array/object?

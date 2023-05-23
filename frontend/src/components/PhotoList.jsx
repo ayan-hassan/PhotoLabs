@@ -11,7 +11,9 @@ const PhotoList = (props) => {
       username={photo.user.name} 
       imageSource={photo.urls.regular} 
       hideUserName= {photo.hideUserName} 
-      key={photo.id}/>
+      key={photo.id}
+      photoId={photo.id}
+      />
   );
   
   return (
