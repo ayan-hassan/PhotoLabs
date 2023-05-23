@@ -18,7 +18,7 @@ const PhotoList = (props) => {
       openModal={openModal}
       photos={photos}
       name={photo.user.name}
-      profilePhoto={photo.user.profile_photo}
+      profilePhoto={photo.user.profile}
       city={photo.location.city}
       country={photo.location.country}
       />
