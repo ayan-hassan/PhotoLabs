@@ -14,7 +14,9 @@ const App = (props) => {
   
   const [showModal, setShowModal] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
+  const [selectedTopic, setSelectedTopic] = useState(null)
   const [favPhotos, setFavPhotos] = useState([]);
+  // const [filteredPhotos, setFilteredPhotos] = useState([]);
   
   const [photos, setPhotos] = useState([]);
   const [topics, setTopics] = useState([]);
@@ -24,14 +26,13 @@ const App = (props) => {
       method: 'GET'
     })
     .then(res => {
-      console.log(res);
+      // console.log(res);
       return res.json();
     })
     .then(json => {
       setPhotos(json);
     })
     .catch(err => console.log(err));
-
     fetch('/api/topics/', {
       method: 'GET'
     })
@@ -42,7 +43,6 @@ const App = (props) => {
       setTopics(json);
     })
     .catch(err => console.log(err));
-
   }, []);
 
   const openModal = (id) => {
@@ -51,6 +51,31 @@ const App = (props) => {
     setSelectedPhoto(photo);
   }
 
+  const selectTopic = (id) => {
+    setSelectedTopic(id);
+  }
+
+  useEffect(() => {
+    const fetchData = (topic) => {
+      if (selectedTopic) {
+        fetch(`/api/topics/photos/${selectedTopic}`)
+          .then((res) => res.json())
+          .then((data) => {
+            setPhotos(data);
+          })
+          .catch((err) => console.log(err));
+      } else {
+        fetch("/api/photos")
+          .then((res) => res.json())
+          .then((data) => {
+            setPhotos(data);
+          })
+          .catch((err) => console.log(err));
+      }
+    };
+    fetchData(selectTopic);
+  }, [selectedTopic]); // Fetch photo data when the selected topic changes
+  
   return (
     <div className="App">
       <HomeRoute 
@@ -58,7 +83,10 @@ const App = (props) => {
         topics={topics} 
         favPhotos={favPhotos} 
         setFavPhotos={setFavPhotos}
-        openModal={openModal} />
+        openModal={openModal}
+        selectedTopic={selectedTopic}
+        setSelectedTopic={setSelectedTopic}
+        selectTopic={selectTopic} />
         
       <PhotoDetailsModal 
         openModal={openModal} 

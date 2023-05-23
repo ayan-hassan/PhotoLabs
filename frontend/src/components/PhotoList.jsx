@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import '../styles/PhotoList.scss';
 import PhotoListItem from './PhotoListItem';
 
 const PhotoList = (props) => {
   const {photos, favPhotos, setFavPhotos, openModal} = props;
+
+  console.log(photos)
   
   const photoComponent = photos.map(photo => 
     <PhotoListItem 

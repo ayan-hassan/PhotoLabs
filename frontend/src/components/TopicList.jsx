@@ -5,13 +5,15 @@ import FavBadge from './FavBadge';
 import TopicListItem from './TopicListItem';
 
 const TopicList = (props) => {
-  const {topics} = props;
+  const {topics, selectTopic} = props;
   
   const topicComponent = topics.map(topic => 
     <TopicListItem 
       label={topic.title} 
       link={topic.link} 
-      key={topic.id}/>
+      key={topic.id}
+      topicId={topic.id}
+      selectTopic={selectTopic}/>
       );
 
   return (
