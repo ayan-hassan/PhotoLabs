@@ -15,7 +15,6 @@ const App = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [favPhotos, setFavPhotos] = useState([]);
-  const [photoData, setPhotoData] = useState();
 
   const openModal = (id) => {
     const photo = photos.find((photo) => photo.id === id);
@@ -25,15 +24,19 @@ const App = (props) => {
 
   return (
     <div className="App">
-      <HomeRoute openModal={openModal} 
+      <HomeRoute 
         photos={photos} 
         mockTopics={mockTopics} 
         favPhotos={favPhotos} 
-        setFavPhotos={setFavPhotos}/>
+        setFavPhotos={setFavPhotos}
+        openModal={openModal} />
+        
       <PhotoDetailsModal 
         openModal={openModal} 
         showModal={showModal}
         selectedPhoto={selectedPhoto}
+        favPhotos={favPhotos}
+        setFavPhotos={setFavPhotos}
         />
     </div>
   );
