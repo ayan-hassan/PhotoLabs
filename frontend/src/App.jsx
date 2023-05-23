@@ -7,6 +7,7 @@ import './styles/PhotoDetailsModal.scss';
 import photos from './mocks/photos.json'
 import mockTopics from './mocks/topics.json'
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
+import useApplicationData from './hooks/useApplicationData';
 
 // Note: Rendering a single component to build components in isolation
 
@@ -21,6 +22,8 @@ const App = (props) => {
     setShowModal(showModal ? false : true);
     setSelectedPhoto(photo);
   }
+
+  // const [openModal, favPhotos, setFavPhotos, showModal, selectedPhoto] = useApplicationData();
 
   return (
     <div className="App">
