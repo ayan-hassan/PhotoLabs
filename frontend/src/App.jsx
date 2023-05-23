@@ -1,21 +1,49 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import HomeRoute from './components/HomeRoute';
 
 import './App.scss';
 import './styles/PhotoDetailsModal.scss';
 
-import photos from './mocks/photos.json'
-import mockTopics from './mocks/topics.json'
+// import photos from './mocks/photos.json'
+// import mockTopics from './mocks/topics.json'
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
-import useApplicationData from './hooks/useApplicationData';
 
 // Note: Rendering a single component to build components in isolation
 
 const App = (props) => {
-
+  
   const [showModal, setShowModal] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [favPhotos, setFavPhotos] = useState([]);
+  
+  const [photos, setPhotos] = useState([]);
+  const [topics, setTopics] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/photos/', {
+      method: 'GET'
+    })
+    .then(res => {
+      console.log(res);
+      return res.json();
+    })
+    .then(json => {
+      setPhotos(json);
+    })
+    .catch(err => console.log(err));
+
+    fetch('/api/topics/', {
+      method: 'GET'
+    })
+    .then(res => {
+      return res.json();
+    })
+    .then(json => {
+      setTopics(json);
+    })
+    .catch(err => console.log(err));
+
+  }, []);
 
   const openModal = (id) => {
     const photo = photos.find((photo) => photo.id === id);
@@ -27,7 +55,7 @@ const App = (props) => {
     <div className="App">
       <HomeRoute 
         photos={photos} 
-        mockTopics={mockTopics} 
+        mockTopics={topics} 
         favPhotos={favPhotos} 
         setFavPhotos={setFavPhotos}
         openModal={openModal} />
