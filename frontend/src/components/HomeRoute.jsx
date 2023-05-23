@@ -7,9 +7,9 @@ import PhotoList from "./PhotoList";
 
 export default function HomeRoute(props) {
 
-  const {mockPhotos, mockTopics} = props;
+  const {mockPhotos, mockTopics, favPhotos, setFavPhotos, openModal} = props;
 
-  const [favPhotos, setFavPhotos] = useState([]);
+  // const [favPhotos, setFavPhotos] = useState([]);
 
   const [isFavPhotoExist, setIsFavPhotoExist] = useState(false);
 
@@ -18,7 +18,7 @@ export default function HomeRoute(props) {
   return (
     <div className="home-route">
       <TopNavigation mockTopics={mockTopics} favPhotos={favPhotos} isFavPhotoExist={isFavPhotoExist} setIsFavPhotoExist={setIsFavPhotoExist}/>
-      <PhotoList mockPhotos={mockPhotos} favPhotos={favPhotos} setFavPhotos={setFavPhotos}/>
+      <PhotoList openModal={openModal} mockPhotos={mockPhotos} favPhotos={favPhotos} setFavPhotos={setFavPhotos}/>
     </div>
   )
 }
