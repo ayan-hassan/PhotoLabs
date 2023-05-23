@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import PhotoList from '../components/PhotoList';
-import mockPhotos from '../mocks/photos.js';
+// import mockPhotos from '../mocks/photos.js';
 
 
 import '../styles/PhotoDetailsModal.scss'
@@ -9,7 +9,7 @@ const PhotoDetailsModal = (props) => {
   const {openModal, showModal, selectedPhoto, favPhotos, setFavPhotos} = props;
 
   if (showModal) {
-    const similarPhotoArr = Object.values(mockPhotos[selectedPhoto.id - 1].similar_photos)
+    const similarPhotoArr = Object.values(selectedPhoto.similar_photos)
     return (
       <div className='photo-details-modal'>
         <button onClick={openModal} className='photo-details-modal--close-button'>

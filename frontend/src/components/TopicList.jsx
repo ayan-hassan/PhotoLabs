@@ -5,9 +5,9 @@ import FavBadge from './FavBadge';
 import TopicListItem from './TopicListItem';
 
 const TopicList = (props) => {
-  const {mockTopics} = props;
+  const {topics} = props;
   
-  const topicComponent = mockTopics.map(topic => 
+  const topicComponent = topics.map(topic => 
     <TopicListItem 
       label={topic.title} 
       link={topic.link} 

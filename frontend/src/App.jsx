@@ -55,7 +55,7 @@ const App = (props) => {
     <div className="App">
       <HomeRoute 
         photos={photos} 
-        mockTopics={topics} 
+        topics={topics} 
         favPhotos={favPhotos} 
         setFavPhotos={setFavPhotos}
         openModal={openModal} />
