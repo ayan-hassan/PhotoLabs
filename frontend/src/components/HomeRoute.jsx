@@ -11,9 +11,13 @@ export default function HomeRoute(props) {
 
   const [favPhotos, setFavPhotos] = useState([]);
 
+  const [isFavPhotoExist, setIsFavPhotoExist] = useState(false);
+
+  
+
   return (
     <div className="home-route">
-      <TopNavigation mockTopics={mockTopics}/>
+      <TopNavigation mockTopics={mockTopics} favPhotos={favPhotos} isFavPhotoExist={isFavPhotoExist} setIsFavPhotoExist={setIsFavPhotoExist}/>
       <PhotoList mockPhotos={mockPhotos} favPhotos={favPhotos} setFavPhotos={setFavPhotos}/>
     </div>
   )
