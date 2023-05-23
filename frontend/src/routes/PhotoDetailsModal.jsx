@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PhotoList from '../components/PhotoList';
 
 
 import '../styles/PhotoDetailsModal.scss'
 
 const PhotoDetailsModal = (props) => {
-  const {openModal, showModal, setShowModal, photoData, setPhotoData} = props;
+  const {openModal, showModal, setShowModal, selectedPhoto} = props;
+
+  useEffect(() => console.log(selectedPhoto));
 
   if (showModal) {
     return (

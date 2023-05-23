@@ -25,8 +25,16 @@ const App = (props) => {
 
   return (
     <div className="App">
-      <HomeRoute openModal={openModal} mockPhotos={mockPhotos} mockTopics={mockTopics} favPhotos={favPhotos} setFavPhotos={setFavPhotos}/>
-      <PhotoDetailsModal openModal={openModal} showModal={showModal} setShowModal={setShowModal} photoData={setPhotoData} setPhotoData={setPhotoData}/>
+      <HomeRoute openModal={openModal} 
+        mockPhotos={mockPhotos} 
+        mockTopics={mockTopics} 
+        favPhotos={favPhotos} 
+        setFavPhotos={setFavPhotos}/>
+      <PhotoDetailsModal 
+        openModal={openModal} 
+        showModal={showModal}
+        selectedPhoto={selectedPhoto}
+        />
     </div>
   );
 };
