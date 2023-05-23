@@ -16,6 +16,11 @@ const PhotoList = (props) => {
       favPhotos={favPhotos} 
       setFavPhotos={setFavPhotos}
       openModal={openModal}
+      photos={photos}
+      name={photo.user.name}
+      profilePhoto={photo.user.profile_photo}
+      city={photo.location.city}
+      country={photo.location.country}
       />
   );
   
