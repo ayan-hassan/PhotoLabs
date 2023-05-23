@@ -8,9 +8,16 @@ const cors = require("cors");
 
 const app = express();
 
+
 const photos = require("./routes/photos");
 const topics = require("./routes/topics");
 
+const db = require('./db/index');
+
+app.use("/api", photos(db));
+app.use("/api", topics(db));
+
+app.use(express.static(path.join(__dirname, "public")));
 
 function read(file) {
   return new Promise((resolve, reject) => {

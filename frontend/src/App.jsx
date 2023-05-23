@@ -23,8 +23,6 @@ const App = (props) => {
     setSelectedPhoto(photo);
   }
 
-  // const [openModal, favPhotos, setFavPhotos, showModal, selectedPhoto] = useApplicationData();
-
   return (
     <div className="App">
       <HomeRoute 
