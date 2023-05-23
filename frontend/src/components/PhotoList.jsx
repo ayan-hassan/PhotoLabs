@@ -4,9 +4,9 @@ import '../styles/PhotoList.scss';
 import PhotoListItem from './PhotoListItem';
 
 const PhotoList = (props) => {
-  const {mockPhotos, favPhotos, setFavPhotos, openModal} = props;
+  const {photos, favPhotos, setFavPhotos, openModal} = props;
   
-  const photoComponent = mockPhotos.map(photo => 
+  const photoComponent = photos.map(photo => 
     <PhotoListItem 
       username={photo.user.name} 
       imageSource={photo.urls.regular} 

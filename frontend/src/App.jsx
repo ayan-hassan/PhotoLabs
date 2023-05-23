@@ -4,7 +4,7 @@ import HomeRoute from './components/HomeRoute';
 import './App.scss';
 import './styles/PhotoDetailsModal.scss';
 
-import mockPhotos from './mocks/photos.json'
+import photos from './mocks/photos.json'
 import mockTopics from './mocks/topics.json'
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
 
@@ -18,7 +18,7 @@ const App = (props) => {
   const [photoData, setPhotoData] = useState();
 
   const openModal = (id) => {
-    const photo = mockPhotos.find((photo) => photo.id === id);
+    const photo = photos.find((photo) => photo.id === id);
     setShowModal(showModal ? false : true);
     setSelectedPhoto(photo);
   }
@@ -26,7 +26,7 @@ const App = (props) => {
   return (
     <div className="App">
       <HomeRoute openModal={openModal} 
-        mockPhotos={mockPhotos} 
+        photos={photos} 
         mockTopics={mockTopics} 
         favPhotos={favPhotos} 
         setFavPhotos={setFavPhotos}/>

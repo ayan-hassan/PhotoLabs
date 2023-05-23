@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react';
 import PhotoList from '../components/PhotoList';
+import mockPhotos from '../mocks/photos.js';
 
 
 import '../styles/PhotoDetailsModal.scss'
 
 const PhotoDetailsModal = (props) => {
-  const {openModal, showModal, setShowModal, selectedPhoto} = props;
-
-  useEffect(() => console.log(selectedPhoto));
+  const {openModal, showModal, selectedPhoto} = props;
 
   if (showModal) {
+    const similarPhotoArr = Object.values(mockPhotos[selectedPhoto.id - 1].similar_photos)
     return (
       <div className='photo-details-modal'>
         <button onClick={openModal} className='photo-details-modal--close-button'>
@@ -25,6 +25,11 @@ const PhotoDetailsModal = (props) => {
             </defs>
           </svg>
         </button>
+        <img className="photo-details-modal--image" src={selectedPhoto.urls.regular}/>
+        <p className="photo-details-modal--header">Similar Photos</p>
+        <div className="photo-details-modal--images">
+          <PhotoList photos={similarPhotoArr} openModal={openModal} />
+        </div>
       </div>
       )
     } else {
