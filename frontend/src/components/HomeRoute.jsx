@@ -9,10 +9,12 @@ export default function HomeRoute(props) {
 
   const {mockPhotos, mockTopics} = props;
 
+  const [favPhotos, setFavPhotos] = useState([]);
+
   return (
     <div className="home-route">
       <TopNavigation mockTopics={mockTopics}/>
-      <PhotoList mockPhotos={mockPhotos}/>
+      <PhotoList mockPhotos={mockPhotos} favPhotos={favPhotos} setFavPhotos={setFavPhotos}/>
     </div>
   )
 }

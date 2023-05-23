@@ -4,9 +4,7 @@ import { FavIcon } from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
-  const {photoId} = props;
-
-  const [favPhotos, setFavPhotos] = useState([]);
+  const {photoId, favPhotos, setFavPhotos} = props;
 
   const [fav, setFav] = useState(false);
 
@@ -14,10 +12,10 @@ function PhotoFavButton(props) {
     setFav(fav ? false : true);
     if (!favPhotos.includes(photoId)) {
       setFavPhotos((prev) => [...prev, photoId]);
-      console.log(favPhotos)
+      // console.log(favPhotos)
     } else {
       setFavPhotos((prev) => prev.filter((id) => id !== photoId));
-      console.log('Unliked', favPhotos)
+      // console.log('Unliked', favPhotos)
     }
   };
 

@@ -4,11 +4,11 @@ import '../styles/PhotoListItem.scss';
 import PhotoFavButton from './PhotoFavButton';
 
 const PhotoListItem = (props) => {
-  const {photoId} = props;
+  const {photoId, favPhotos, setFavPhotos} = props;
 
   return (
     <article className='photo-list--item'>
-      <PhotoFavButton photoId={photoId}/>
+      <PhotoFavButton photoId={photoId} favPhotos={favPhotos} setFavPhotos={setFavPhotos}/>
       <img className="photo-list--image" src={props.imageSource}/>
     </article>
   )
