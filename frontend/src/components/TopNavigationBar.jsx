@@ -20,8 +20,10 @@ const TopNavigation = (props) => {
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar--logo">PhotoLabs</span>
-      <TopicList mockTopics={mockTopics}/>
-      <FavBadge isFavPhotoExist={isFavPhotoExist} setIsFavPhotoExist={setIsFavPhotoExist}/>
+      <div className="topics-favbadge">
+        <TopicList mockTopics={mockTopics}/>
+        <FavBadge isFavPhotoExist={isFavPhotoExist} setIsFavPhotoExist={setIsFavPhotoExist}/>
+      </div>
     </div>
   )
 }

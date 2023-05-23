@@ -8,6 +8,13 @@
   -moz-box-shadow: 0 4px 6px -6px #222;
   box-shadow: 0 4px 6px -6px #222;
   height: 72px;
+  background-color: #FFFFFF;
+}
+
+.topics-favbadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .top-nav-bar--logo {
