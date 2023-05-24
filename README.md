@@ -1,17 +1,19 @@
 # Photolabs
-The PhotoLabs project for the Web Development React course programming.
+PhotoLabs is a React-based single-page application (SPA) that allows users to view photos in different contexts.
 
 <em>Home Page</em>
 
-!["Screenshot of desktop version of app"](https://github.com/ayan-hassan/tweeter/blob/master/docs/Screenshot%202023-04-27%20at%209.49.56%20PM.png?raw=true)
+!["Screenshot of homepage"](https://github.com/ayan-hassan/photolabs-starter/blob/main/docs/Screenshot%202023-05-23%20at%209.00.34%20PM.png?raw=true)
 
 <em>Modal of selected photo displaying related photos</em>
 
-!["Screenshot of mobile version of app"](https://github.com/ayan-hassan/tweeter/blob/master/docs/Screenshot%202023-04-27%20at%209.50.37%20PM.png?raw=true)
+!["Screenshot of modal"](https://github.com/ayan-hassan/photolabs-starter/blob/main/docs/Screenshot%202023-05-23%20at%208.59.49%20PM.png?raw=true)
 
-## Setup
+## Getting Started
 
-Install dependencies with `npm install` in each respective `/frontend` and `/backend`.
+1. [Create](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) a new repository using this repository as a template.
+2. Clone your repository onto your local device.
+3. Install dependencies with `npm install` in each respective `/frontend` and `/backend`.
 
 ## [Frontend] Running Webpack Development Server
 
@@ -28,3 +30,14 @@ Read `backend/readme` for further setup details.
 cd backend
 npm start
 ```
+## Dependencies
+
+- React
+- Body Parser
+- CORS
+- dotenv
+- Express
+- Helmet
+- pg
+- socket.io
+- ws
