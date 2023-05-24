@@ -8,14 +8,13 @@ function PhotoFavButton(props) {
 
   const [fav, setFav] = useState(false);
 
+  //when user click fav button, id of photo added to favphoto state if not already there, removes it if it is
   const toggleFav = (photoId) => {
     setFav(fav ? false : true);
     if (!favPhotos.includes(photoId)) {
       setFavPhotos((prev) => [...prev, photoId]);
-      // console.log(favPhotos)
     } else {
       setFavPhotos((prev) => prev.filter((id) => id !== photoId));
-      // console.log('Unliked', favPhotos)
     }
   };
 

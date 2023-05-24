@@ -4,35 +4,22 @@ import HomeRoute from './components/HomeRoute';
 import './App.scss';
 import './styles/PhotoDetailsModal.scss';
 
-// import photos from './mocks/photos.json'
-// import mockTopics from './mocks/topics.json'
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
 
 // Note: Rendering a single component to build components in isolation
 
-const App = (props) => {
+const App = () => {
   
   const [showModal, setShowModal] = useState(false);
   const [selectedPhoto, setSelectedPhoto] = useState(null);
   const [selectedTopic, setSelectedTopic] = useState(null)
   const [favPhotos, setFavPhotos] = useState([]);
-  // const [filteredPhotos, setFilteredPhotos] = useState([]);
   
   const [photos, setPhotos] = useState([]);
   const [topics, setTopics] = useState([]);
 
+  //fetches topics
   useEffect(() => {
-    fetch('/api/photos/', {
-      method: 'GET'
-    })
-    .then(res => {
-      // console.log(res);
-      return res.json();
-    })
-    .then(json => {
-      setPhotos(json);
-    })
-    .catch(err => console.log(err));
     fetch('/api/topics/', {
       method: 'GET'
     })
@@ -45,6 +32,7 @@ const App = (props) => {
     .catch(err => console.log(err));
   }, []);
 
+  //opens modal when image clicked
   const openModal = (id) => {
     const photo = photos.find((photo) => photo.id === id);
     setShowModal(showModal ? false : true);
@@ -55,8 +43,9 @@ const App = (props) => {
     setSelectedTopic(id);
   }
 
+  //fetches filtered photo data when topic is selected, else displays all photos
   useEffect(() => {
-    const fetchData = (topic) => {
+    const fetchFilteredPhotos = (topic) => {
       if (selectedTopic) {
         fetch(`/api/topics/photos/${selectedTopic}`)
           .then((res) => res.json())
@@ -73,8 +62,8 @@ const App = (props) => {
           .catch((err) => console.log(err));
       }
     };
-    fetchData(selectTopic);
-  }, [selectedTopic]); // Fetch photo data when the selected topic changes
+    fetchFilteredPhotos(selectTopic);
+  }, [selectedTopic]);
   
   return (
     <div className="App">

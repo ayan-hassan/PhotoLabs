@@ -7,16 +7,23 @@ import PhotoList from "./PhotoList";
 
 export default function HomeRoute(props) {
 
-  const {photos, topics, favPhotos, setFavPhotos, openModal, selectTopic, selectedTopic} = props;
+  const {photos, topics, favPhotos, setFavPhotos, openModal, selectTopic} = props;
 
   const [isFavPhotoExist, setIsFavPhotoExist] = useState(false);  
 
   return (
     <div className="home-route">
-      <TopNavigation topics={topics} favPhotos={favPhotos} isFavPhotoExist={isFavPhotoExist} setIsFavPhotoExist={setIsFavPhotoExist} selectTopic={selectTopic}/>
-      <PhotoList openModal={openModal} photos={photos} favPhotos={favPhotos} setFavPhotos={setFavPhotos}/>
+      <TopNavigation 
+        topics={topics} 
+        favPhotos={favPhotos} 
+        isFavPhotoExist={isFavPhotoExist} 
+        setIsFavPhotoExist={setIsFavPhotoExist} 
+        selectTopic={selectTopic}/>
+      <PhotoList 
+        openModal={openModal} 
+        photos={photos} 
+        favPhotos={favPhotos} 
+        setFavPhotos={setFavPhotos}/>
     </div>
   )
 }
-
-//when I click the button, save the event to a array/object?

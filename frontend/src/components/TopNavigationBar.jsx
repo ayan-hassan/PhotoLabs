@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 const TopNavigation = (props) => {
   const {topics, favPhotos, isFavPhotoExist, setIsFavPhotoExist, selectTopic} = props;
 
+  //when favphoto state includes a favourited photo, isfavphotoexists set to true and passed to favbadge
   useEffect(() => {
     if (favPhotos.length > 0) {
       setIsFavPhotoExist(true)
