@@ -9,7 +9,6 @@ const PhotoDetailsModal = (props) => {
 
   if (showModal) {
     const similarPhotoArr = Object.values(selectedPhoto.similar_photos)
-    console.log(selectedPhoto.user.name)
     return (
       <div className='photo-details-modal'>
         <div className='photo-details-modal--button-selected_photo'>
