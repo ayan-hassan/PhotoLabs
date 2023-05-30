@@ -5,85 +5,34 @@ import './App.scss';
 import './styles/PhotoDetailsModal.scss';
 
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
+import useApplicationData from './hooks/useApplicationData';
 
 // Note: Rendering a single component to build components in isolation
 
 const App = () => {
-  
-  const [showModal, setShowModal] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [selectedTopic, setSelectedTopic] = useState(null)
-  const [favPhotos, setFavPhotos] = useState([]);
-  
-  const [photos, setPhotos] = useState([]);
-  const [topics, setTopics] = useState([]);
 
-  //fetches topics
-  useEffect(() => {
-    fetch('/api/topics/', {
-      method: 'GET'
-    })
-    .then(res => {
-      return res.json();
-    })
-    .then(json => {
-      setTopics(json);
-    })
-    .catch(err => console.log(err));
-  }, []);
-
-  //opens modal when image clicked
-  const openModal = (id) => {
-    const photo = photos.find((photo) => photo.id === id);
-    setShowModal(showModal ? false : true);
-    setSelectedPhoto(photo);
-  }
-
-  const selectTopic = (id) => {
-    setSelectedTopic(id);
-  }
-
-  //fetches filtered photo data when topic is selected, else displays all photos
-  useEffect(() => {
-    const fetchFilteredPhotos = (topic) => {
-      if (selectedTopic) {
-        fetch(`/api/topics/photos/${selectedTopic}`)
-          .then((res) => res.json())
-          .then((data) => {
-            setPhotos(data);
-          })
-          .catch((err) => console.log(err));
-      } else {
-        fetch("/api/photos")
-          .then((res) => res.json())
-          .then((data) => {
-            setPhotos(data);
-          })
-          .catch((err) => console.log(err));
-      }
-    };
-    fetchFilteredPhotos(selectTopic);
-  }, [selectedTopic]);
+  //state and API calls in hooks/useApplicationData.js
+  const { state, openModal, setFavPhotos, setSelectedTopic} = useApplicationData();
   
   return (
     <div className="App">
       <HomeRoute 
-        photos={photos} 
-        topics={topics} 
-        favPhotos={favPhotos} 
+        photos={state.photos} 
+        topics={state.topics} 
+        favPhotos={state.favPhotos} 
         setFavPhotos={setFavPhotos}
         openModal={openModal}
-        selectedTopic={selectedTopic}
+        selectedTopic={state.selectedTopic}
         setSelectedTopic={setSelectedTopic}
-        selectTopic={selectTopic} />
+        selectTopic={state.selectedTopic} />
         
       <PhotoDetailsModal 
         openModal={openModal} 
-        showModal={showModal}
-        selectedPhoto={selectedPhoto}
-        favPhotos={favPhotos}
+        showModal={state.showModal}
+        selectedPhoto={state.selectedPhoto}
+        favPhotos={state.favPhotos}
         setFavPhotos={setFavPhotos}
-        photoId={photos.id}
+        photoId={state.photos.id}
         />
     </div>
   );
