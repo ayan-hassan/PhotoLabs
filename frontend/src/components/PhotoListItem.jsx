@@ -7,9 +7,9 @@ const PhotoListItem = (props) => {
   const {photoId, favPhotos, setFavPhotos, openModal, name, city, country, profilePhoto} = props;
 
   return (
-    <article className='photo-list--item' onClick={() => openModal(photoId)}>
+    <article className='photo-list--item'>
       <PhotoFavButton photoId={photoId} favPhotos={favPhotos} setFavPhotos={setFavPhotos}/>
-      <img className="photo-list--image" src={props.imageSource}/>
+      <img className="photo-list--image" onClick={() => openModal(photoId)} src={props.imageSource}/>
       <div className='photo-list--user-details'>
         <img className='photo-list--user-profile'src={profilePhoto}/> 
         <div className='photo-list--name-location'>
