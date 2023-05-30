@@ -83,6 +83,7 @@ const App = () => {
         selectedPhoto={selectedPhoto}
         favPhotos={favPhotos}
         setFavPhotos={setFavPhotos}
+        photoId={photos.id}
         />
     </div>
   );

@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
 import PhotoList from '../components/PhotoList';
+import PhotoFavButton from '../components/PhotoFavButton';
 
 
 import '../styles/PhotoDetailsModal.scss'
 
 const PhotoDetailsModal = (props) => {
-  const {openModal, showModal, selectedPhoto, favPhotos, setFavPhotos} = props;
+  const {openModal, showModal, selectedPhoto, favPhotos, setFavPhotos, photoId} = props;
 
   if (showModal) {
     const similarPhotoArr = Object.values(selectedPhoto.similar_photos)
@@ -25,7 +26,12 @@ const PhotoDetailsModal = (props) => {
               </defs>
             </svg>
           </button>
-          <img className="photo-details-modal--image" src={selectedPhoto.urls.regular}/>
+          <div className='photo-details-modal--image-container'>
+            <img className="photo-details-modal--image" src={selectedPhoto.urls.regular}/>
+              <div className="photo-details-modal--fav-button">
+                <PhotoFavButton photoId={photoId} favPhotos={favPhotos} setFavPhotos={setFavPhotos}/>
+              </div>
+          </div>
           <div className='photo-details-modal--photographer-details'>
             <div className='photo-list--user-details'>
               <img className='photo-list--user-profile'src={selectedPhoto.user.profile}/> 
