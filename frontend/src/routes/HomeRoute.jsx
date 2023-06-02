@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 
 import '../styles/HomeRoute.scss'
-import TopNavigation from "./TopNavigationBar";
-import PhotoList from "./PhotoList";
+import TopNavigation from "../components/TopNavigationBar";
+import PhotoList from "../components/PhotoList";
 
 
 export default function HomeRoute(props) {
