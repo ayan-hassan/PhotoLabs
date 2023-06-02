@@ -5,28 +5,27 @@ import TopicList from './TopicList';
 import FavBadge from './FavBadge';
 import { useEffect } from 'react';
 
-const TopNavigation = (props) => {
-  const {topics, favPhotos, isFavPhotoExist, setIsFavPhotoExist, selectTopic} = props;
+export default function TopNavigation(props) {
+  const {topics, isFavPhotoExist, setIsFavPhotoExist, dispatch, favList} = props;
 
   //when favphoto state includes a favourited photo, isfavphotoexists set to true and passed to favbadge
   useEffect(() => {
-    if (favPhotos.length > 0) {
+    if (favList.length > 0) {
       setIsFavPhotoExist(true)
     } else {
       setIsFavPhotoExist(false)
     }
-  }, [favPhotos])
+  }, [favList])
 
 
   return (
     <div className="top-nav-bar">
       <span className="top-nav-bar--logo">PhotoLabs</span>
       <div className="topics-favbadge">
-        <TopicList topics={topics} selectTopic={selectTopic}/>
+        <TopicList topics={topics} dispatch={dispatch}/>
         <FavBadge isFavPhotoExist={isFavPhotoExist} setIsFavPhotoExist={setIsFavPhotoExist}/>
       </div>
     </div>
   )
-}
+};
 
-export default TopNavigation;

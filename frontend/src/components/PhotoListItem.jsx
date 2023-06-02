@@ -3,13 +3,14 @@ import React from 'react';
 import '../styles/PhotoListItem.scss';
 import PhotoFavButton from './PhotoFavButton';
 
-const PhotoListItem = (props) => {
-  const {photoId, favPhotos, setFavPhotos, openModal, name, city, country, profilePhoto} = props;
+export default function PhotoListItem(props) {
+  const {photoId, name, city, country, profilePhoto, dispatch, imageSource, favIcon, favList, setFavList} = props;
+
 
   return (
     <article className='photo-list--item'>
-      <PhotoFavButton photoId={photoId} favPhotos={favPhotos} setFavPhotos={setFavPhotos}/>
-      <img className="photo-list--image" onClick={() => openModal(photoId)} src={props.imageSource}/>
+      <PhotoFavButton photoId={photoId} dispatch={dispatch} favIcon={favIcon} favList={favList} setFavList={setFavList}/>
+      <img className="photo-list--image" onClick={() => dispatch({type: "OPEN_MODAL", payload: {photoId}})} src={imageSource}/>
       <div className='photo-list--user-details'>
         <img className='photo-list--user-profile'src={profilePhoto}/> 
         <div className='photo-list--name-location'>
@@ -19,6 +20,4 @@ const PhotoListItem = (props) => {
       </div>
     </article>
   )
-}
-
-export default PhotoListItem
+};

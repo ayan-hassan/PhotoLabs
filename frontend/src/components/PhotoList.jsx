@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 
 import '../styles/PhotoList.scss';
 import PhotoListItem from './PhotoListItem';
 
-const PhotoList = (props) => {
-  const {photos, favPhotos, setFavPhotos, openModal} = props;
+export default function PhotoList(props) {
+  const {photos, dispatch, favList, setFavList} = props;
   
   const photoComponent = photos.map(photo => 
     <PhotoListItem 
@@ -13,14 +13,14 @@ const PhotoList = (props) => {
       hideUserName= {photo.hideUserName} 
       key={photo.id}
       photoId={photo.id}
-      favPhotos={favPhotos} 
-      setFavPhotos={setFavPhotos}
-      openModal={openModal}
       photos={photos}
       name={photo.user.name}
       profilePhoto={photo.user.profile}
       city={photo.location.city}
       country={photo.location.country}
+      dispatch={dispatch}
+      favList={favList}
+      setFavList={setFavList}
       />
   );
   
@@ -29,6 +29,4 @@ const PhotoList = (props) => {
     {photoComponent}
   </ul>
   )
-}
-
-export default PhotoList
+};

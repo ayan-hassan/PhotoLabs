@@ -12,27 +12,28 @@ import useApplicationData from './hooks/useApplicationData';
 const App = () => {
 
   //state and API calls in hooks/useApplicationData.js
-  const { state, openModal, setFavPhotos, setSelectedTopic} = useApplicationData();
+  const { state, dispatch } = useApplicationData();
+
+  const [favList, setFavList] = useState([])
   
   return (
     <div className="App">
       <HomeRoute 
-        photos={state.photos} 
+        photos={state.photos}
         topics={state.topics} 
-        favPhotos={state.favPhotos} 
-        setFavPhotos={setFavPhotos}
-        openModal={openModal}
-        selectedTopic={state.selectedTopic}
-        setSelectedTopic={setSelectedTopic}
-        selectTopic={state.selectedTopic} />
+        dispatch={dispatch}
+        favList={favList}
+        setFavList={setFavList}
+        />
         
-      <PhotoDetailsModal 
-        openModal={openModal} 
+      <PhotoDetailsModal
+        dispatch={dispatch} 
         showModal={state.showModal}
         selectedPhoto={state.selectedPhoto}
-        favPhotos={state.favPhotos}
-        setFavPhotos={setFavPhotos}
         photoId={state.photos.id}
+        photoData={state.photoData}
+        favList={favList}
+        setFavList={setFavList}
         />
     </div>
   );

@@ -3,16 +3,15 @@ import React from 'react';
 import '../styles/TopicList.scss'
 import TopicListItem from './TopicListItem';
 
-const TopicList = (props) => {
-  const {topics, selectTopic} = props;
+export default function TopicList(props) {
+  const {topics, dispatch} = props;
   
   const topicComponent = topics.map(topic => 
     <TopicListItem 
       label={topic.title} 
-      link={topic.link} 
       key={topic.id}
       topicId={topic.id}
-      selectTopic={selectTopic}/>
+      dispatch={dispatch}/>
       );
 
   return (
@@ -22,4 +21,3 @@ const TopicList = (props) => {
   )
 }
 
-export default TopicList

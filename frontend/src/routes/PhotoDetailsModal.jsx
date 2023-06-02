@@ -1,19 +1,20 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import PhotoList from '../components/PhotoList';
 import PhotoFavButton from '../components/PhotoFavButton';
 
-
 import '../styles/PhotoDetailsModal.scss'
 
-const PhotoDetailsModal = (props) => {
-  const {openModal, showModal, selectedPhoto, favPhotos, setFavPhotos, photoId} = props;
+export default function PhotoDetailsModal(props) {
+  const {showModal, dispatch, photoId, photoData, favList, setFavList} = props;
+
+  let fav = favList.includes(photoId)
 
   if (showModal) {
-    const similarPhotoArr = Object.values(selectedPhoto.similar_photos)
+    const similarPhotoArr = photoData.similar_photos
     return (
       <div className='photo-details-modal'>
         <div className='photo-details-modal--button-selected_photo'>
-          <button onClick={openModal} className='photo-details-modal--close-button'>
+          <button onClick={() => dispatch({type: "CLOSE_MODAL"})} className='photo-details-modal--close-button'>
             <svg width="24" height="24" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clipPath="url(#clip0_428_287)">
                 <path d="M14.0625 3.9375L3.9375 14.0625" stroke="black" strokeLinecap="round" strokeLinejoin="round"/>
@@ -27,17 +28,17 @@ const PhotoDetailsModal = (props) => {
             </svg>
           </button>
           <div className='photo-details-modal--image-container'>
-            <img className="photo-details-modal--image" src={selectedPhoto.urls.regular}/>
+            <img className="photo-details-modal--image" src={photoData.urls.regular}/>
               <div className="photo-details-modal--fav-button">
-                <PhotoFavButton photoId={photoId} favPhotos={favPhotos} setFavPhotos={setFavPhotos}/>
+                <PhotoFavButton photoId={photoData.id} dispatch={dispatch} favList={favList} setFavList={setFavList}/>
               </div>
           </div>
           <div className='photo-details-modal--photographer-details'>
             <div className='photo-list--user-details'>
-              <img className='photo-list--user-profile'src={selectedPhoto.user.profile}/> 
+              <img className='photo-list--user-profile'src={photoData.user.profile}/> 
               <div className='photo-list--name-location'>
-                {selectedPhoto.user.name}
-                <div className='photo-list--user-location'>{selectedPhoto.location.city}, {selectedPhoto.location.country}</div>
+                {photoData.user.name}
+                <div className='photo-list--user-location'>{photoData.location.city}, {photoData.location.country}</div>
               </div>
             </div>
           </div>
@@ -46,14 +47,14 @@ const PhotoDetailsModal = (props) => {
         <div className="photo-details-modal--images">
           <PhotoList 
             photos={similarPhotoArr} 
-            favPhotos={favPhotos} 
-            setFavPhotos={setFavPhotos} />
+            dispatch={dispatch}
+            favList={favList}
+            setFavList={setFavList}
+            />
         </div>
       </div>
       )
     } else {
       return;
     }
-  }
-
-export default PhotoDetailsModal;
+  };

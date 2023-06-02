@@ -1,34 +1,60 @@
-import { useState, useEffect } from "react";
+import { useEffect, useReducer } from "react";
 
 export default function useApplicationData() {
-    const initialState = {
+
+    const INITIAL_STATE = {
       showModal: false,
       selectedPhoto: null,
       selectedTopic: null,
-      favPhotos: [],
+      photoData: undefined,
       photos: [],
-      topics: []
+      topics: [], 
+      favIcon: false
     }
 
-    const [showModal, setShowModal] = useState(initialState.showModal);
-    const [selectedPhoto, setSelectedPhoto] = useState(initialState.selectedPhoto);
-    const [selectedTopic, setSelectedTopic] = useState(initialState.selectedTopic)
-    const [favPhotos, setFavPhotos] = useState(initialState.favPhotos);
-    
-    const [photos, setPhotos] = useState(initialState.photos);
-    const [topics, setTopics] = useState(initialState.topics);
-  
-    const state = {
-      showModal,
-      selectedPhoto,
-      selectedTopic,
-      favPhotos,
-      photos,
-      topics
-    };
-  
+    const appReducer = (state, action) => {
+      switch (action.type) {
+        case "FETCH_TOPICS":
+          const loadTopics = { ...state};
+          loadTopics.topics = action.payload.topics
+          return loadTopics
+
+        case "FETCH_PHOTOS":
+          const loadPhotos = { ...state};
+          loadPhotos.photos = action.payload.photos
+          return loadPhotos
+
+        case "SELECT_TOPIC":
+          const selectTopic = {...state}
+          selectTopic.selectedTopic = action.payload;
+          return selectTopic;
+
+        case "OPEN_MODAL":
+          const openModal = {...state};
+          const modalPhoto = openModal.photos.find(photo => photo.id === action.payload.photoId);
+          return {
+            ...state,
+            showModal: true,
+            modalPhoto,
+            photoData: modalPhoto
+          }
+
+        case "CLOSE_MODAL":
+          const closeModal = { ...state };
+          closeModal.showModal = false;
+          closeModal.photoData = undefined;
+          return closeModal;
+
+        default: 
+          return state;
+      }
+    }
+
+    const [state, dispatch] = useReducer(appReducer, INITIAL_STATE);
+
     //fetches topics
     useEffect(() => {
+      let loadTopics = {};
       fetch('/api/topics/', {
         method: 'GET'
       })
@@ -36,17 +62,11 @@ export default function useApplicationData() {
         return res.json();
       })
       .then(json => {
-        setTopics(json);
+        loadTopics.topics = json
+        dispatch( {type: 'FETCH_TOPICS', payload: loadTopics})
       })
       .catch(err => console.log(err));
     }, []);
-
-    //opens modal when image clicked
-    const openModal = (id) => {
-      const photo = photos.find((photo) => photo.id === id);
-      setShowModal(showModal ? false : true);
-      setSelectedPhoto(photo);
-    }
 
     const selectTopic = (id) => {
       setSelectedTopic(id);
@@ -55,24 +75,27 @@ export default function useApplicationData() {
     //fetches filtered photo data when topic is selected, else displays all photos
     useEffect(() => {
       const fetchFilteredPhotos = (topic) => {
-        if (selectedTopic) {
-          fetch(`/api/topics/photos/${selectedTopic}`)
+        let loadPhotos = {};
+        if (state.selectedTopic) {
+          fetch(`/api/topics/photos/${state.selectedTopic}`)
             .then((res) => res.json())
-            .then((data) => {
-              setPhotos(data);
+            .then((json) => {
+              loadPhotos.photos = json;
+              dispatch( {type: 'FETCH_PHOTOS', payload: loadPhotos})
             })
             .catch((err) => console.log(err));
         } else {
           fetch("/api/photos")
             .then((res) => res.json())
-            .then((data) => {
-              setPhotos(data);
+            .then((json) => {
+              loadPhotos.photos = json;
+              dispatch( {type: 'FETCH_PHOTOS', payload: loadPhotos})
             })
             .catch((err) => console.log(err));
         }
       };
       fetchFilteredPhotos(selectTopic);
-    }, [selectedTopic]);
+    }, [state.selectedTopic]);
   
-    return { state, openModal, setFavPhotos, setSelectedTopic };
+    return { state, dispatch }
   };

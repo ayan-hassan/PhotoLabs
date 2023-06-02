@@ -2,16 +2,18 @@ import React from 'react';
 
 import '../styles/TopicListItem.scss'
 
-const TopicListItem = (props) => {
+export default function TopicListItem(props) {
+
+  const {label, topicId, dispatch} = props;
 
   return (
-    <div className="topic-list--item" onClick={() => props.selectTopic(props.topicId)}>
+    <div className="topic-list--item" onClick={() => dispatch({type: "SELECT_TOPIC", payload: topicId})}>
       <span>
-        {props.label}
+        {label}
       </span>
       
     </div>
   )
 }
 
-export default TopicListItem
+ 
